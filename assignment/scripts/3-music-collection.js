@@ -9,10 +9,28 @@ let addToCollection = (title,artist,yearPublished) =>{
         yearPublished,
     }
 
-    return collection.push(newAlbum);
+    collection.push(newAlbum);
+
+    //come back to this
+    return 'Just Added:' + newAlbum;
 }
 
 
-addToCollection('Comming Home','sha',2022);
+console.log(addToCollection('Comming Home','sha',2022));
+addToCollection('The Black Album','Jay-Z',2003);
+addToCollection('Confessions','Usher',2004);
+addToCollection('Get Rich or Die Trying','50 Cent',2005);
+addToCollection('Kingdom Come','Jay-Z',2006);
+addToCollection('No Strings Attached','N Sync', 2000);
 
-console.log(collection);
+
+
+console.log('These are the albums in my collection:',collection);
+
+function showCollection(collection) {
+    for(let i = 0; i < collection.length; i++ ){
+        console.log(`${collection[i].title} by ${collection[i].artist} published in ${collection[i].yearPublished}`);
+    }
+}
+
+showCollection(collection)
