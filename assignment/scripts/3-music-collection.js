@@ -34,3 +34,19 @@ function showCollection(collection) {
 }
 
 showCollection(collection)
+
+let findByArtist = function(artist) {
+    let albumsByArtist = [];
+    
+    for(let album of collection){
+        if(album.artist === artist){
+            albumsByArtist.push(album);
+        }
+    }
+
+    return albumsByArtist
+}
+
+
+console.log("These are the search results:",findByArtist('Jay-Z'));
+console.log("These are the search results:",findByArtist('Maya'));
