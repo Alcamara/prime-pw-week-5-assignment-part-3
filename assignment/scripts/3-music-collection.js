@@ -45,6 +45,7 @@ addTrack('In Da Club',3,'Get Rich or Die Trying');
 
 
 console.log('What album was added to collection? ',addToCollection('Kingdom Come','Jay-Z',2006,));
+addTrack('Beach', 4,'Kingdom Come')
 
 
 console.log('What album was added to collection? ',addToCollection());
@@ -82,6 +83,7 @@ let findByArtist = function(artist) {
 console.log("These are the search results:",findByArtist('Jay-Z'));
 console.log("These are the search results:",findByArtist('Maya'));
 
+console.log();
 console.log('...Stretch Goal part 1....');
 
 /*I created a function that "Take an input parameter for a search criteria object"
@@ -105,9 +107,15 @@ function search(searchItem){
 
                 /*Else if album has an artist name & album's publication year is identical 
                 to searchItem year, add album to searchResult array */
-            } else if(album.artist && album.yearPublished === searchItem && album.tracks !== 0){
+            } else if(album.artist !== '' && album.yearPublished === searchItem && album.tracks.length !== 0){
                 searchResult.push(album)
-            } 
+            } else if(album.artist !== ''&& album.yearPublished !== null){
+                for(let trackNum = 0; trackNum < album.tracks.length; trackNum++){
+                    if(album.tracks[trackNum].name === searchItem){
+                        searchResult.push(album)
+                    }
+                }
+            }
         }
 
        
@@ -123,14 +131,9 @@ function search(searchItem){
     
 }
 
-console.log(collection[1].artist === 'Jay-Z' && collection[1].yearPublished);
 
 
 
-
-//test to see if 
-console.log('test search function');
-console.log();
 console.log('Should return an array of two elements(album objects):',search('Jay-Z'));
 console.log('Should return an array of 1 elements(album objects):',search(2004));
 console.log('Should return an array of 1 elements(album objects):',search('In Da Club'));
