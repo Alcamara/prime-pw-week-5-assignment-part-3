@@ -62,6 +62,9 @@ console.log();
 function showCollection(collection) {
     for(let i = 0; i < collection.length; i++ ){
         console.log(`${collection[i].title} by ${collection[i].artist} published in ${collection[i].yearPublished}`);
+        for(let tracks of collection[i].tracks){
+            console.log(tracks.name);
+        }
     }
 }
 
