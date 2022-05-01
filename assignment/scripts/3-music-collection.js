@@ -2,30 +2,34 @@ console.log('***** Music Collection *****')
 
 let collection = [];
 
-let addToCollection = (title,artist,yearPublished) =>{
+let addToCollection = (title,artist,yearPublished,tracks) =>{
  let newAlbum  = {
         title,
         artist,
         yearPublished,
+        tracks,
     }
 
     collection.push(newAlbum);
 
-    //come back to this
-    return 'Just Added:' + newAlbum;
+    return newAlbum;
 }
 
-
-console.log(addToCollection('Comming Home','sha',2022));
-addToCollection('The Black Album','Jay-Z',2003);
-addToCollection('Confessions','Usher',2004);
-addToCollection('Get Rich or Die Trying','50 Cent',2005);
-addToCollection('Kingdom Come','Jay-Z',2006);
-addToCollection('No Strings Attached','N Sync', 2000);
+//Test to make sure album was added:
+console.log('What album was added to collection? ',addToCollection('Coming Home','sha',2022,[{
+    name: 'tippin',
+    duration: 3,
+}]));
 
 
+console.log('What album was added to collection? ',addToCollection('The Black Album','Jay-Z',2003, []));
+console.log('What album was added to collection? ',addToCollection('Confessions','Usher',2004, []));
+console.log('What album was added to collection? ',addToCollection('Get Rich or Die Trying','50 Cent',2005, []));
+console.log('What album was added to collection? ',addToCollection('Kingdom Come','Jay-Z',2006, []));
+console.log('What album was added to collection? ',addToCollection('No Strings Attached','N Sync', 2000, []));
 
 console.log('These are the albums in my collection:',collection);
+
 
 function showCollection(collection) {
     for(let i = 0; i < collection.length; i++ ){
@@ -51,7 +55,7 @@ let findByArtist = function(artist) {
 console.log("These are the search results:",findByArtist('Jay-Z'));
 console.log("These are the search results:",findByArtist('Maya'));
 
-console.log('...Stretch Goal....');
+console.log('...Stretch Goal part 1....');
 
 /*I created a function that "Take an input parameter for a search criteria object"
 The way I understood this was I created a function with one parameter that can be an artist 
@@ -105,4 +109,53 @@ console.log('Should return an empty array',search(1993));
 
 
 
+console.log('...Stretch Goal part 2....');
+
+function addTrack(trackName, trackDuration, albumName){
+    if(typeof trackName === 'string' && typeof trackDuration === 'number'){
+       for(let album of collection){
+           if(album.title === albumName){
+               
+               album.tracks.push({
+                   name:trackName,
+                   duration: trackDuration,
+               })
+            
+               return true;
+               
+           }
+       }
+    } else {
+        return 'Enter valid string name or track duration number'
+    }
+
+    return false ;
+    
+}
+
+//Test to make sure function is working
+console.log('Did I add a track?',addTrack('Encore',4,'The Black Album'));
+console.log(collection[1]);
+console.log('Did I add a track?',addTrack('Encore',4,'Album'));
+console.log('Did I add a track?',addTrack(3,4,'Album'));
+console.log('Did I add a track?', addTrack('Encore','4','The Black Album'));
+
+
+// added two more tracks to 'The Black Album'
+addTrack('What more can I say',4,'The Black Album');
+addTrack('Interlude',2,'The Black Album');
+console.log('number of tracks should be 3',collection[1].tracks.length);
+
+//added three tracks to 'Confession'
+addTrack('Can U handle it?',5,'Confessions');
+addTrack('Bad Girl',4,'Confessions');
+addTrack('Follow me',3,'Confessions');
+addTrack('Super Star',1,'Confessions');
+console.log('number of tracks should be 4',collection[2].tracks.length);
+
+////added three tracks to 'CGet Rich or Die Trying'
+addTrack('Intro',1,'Get Rich or Die Trying');
+addTrack('Many Men',4,'Get Rich or Die Trying');
+addTrack('In Da Club',3,'Get Rich or Die Trying');
+console.log('number of tracks should be 3',collection[3].tracks.length);
 
